@@ -14,6 +14,10 @@ class Main extends React.Component {
         fetch (`http://www.omdbapi.com/?apikey=${API_KEY}&s=matrix`)
         .then(response => response.json())
         .then(data => this.setState({movies: data.Search, loading:false}))
+        .catch((err)=> {
+            console.error(err);
+            this.setState({loading:false})
+        });
     }
 
     searchMovies = (str, type = 'all') => {
@@ -21,6 +25,10 @@ class Main extends React.Component {
         fetch (`http://www.omdbapi.com/?apikey=${API_KEY}&s=${str}${type !== 'all' ? `&type=${type}`: ''}`)
         .then(response => response.json())
         .then(data => this.setState({movies: data.Search, loading:false}))
+        .catch((err)=> {
+            console.error(err);
+            this.setState({loading:false})
+        });
     }
 
     render () {
